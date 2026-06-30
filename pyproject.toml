@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "wcl"
+name = "wcl3"
 version = "0.1.0"
-description = "wcl - transcriptomic data cross-contamination eliminator"
+description = "wcl3 - transcriptomic data cross-contamination eliminator"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
@@ -26,7 +26,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/kolecko007/WinstonCleaner"
+Homepage = "https://github.com/merv1n34k/wcl3"
 
 [project.scripts]
 wcl = "bin.cli:main"

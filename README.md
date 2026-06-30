@@ -1,12 +1,12 @@
-# wcl
-wcl is the successor of WinstonCleaner, a software tool for detecting and removing cross-contaminated
+# wcl3
+wcl3 is the successor of WinstonCleaner, a software tool for detecting and removing cross-contaminated
 contigs from assembled transcriptomes. The program uses BLAST to identify
 suspicious contigs and RPKM values to sort these as either correct or
 contamination.
 
 # Requirements
 
-To run wcl, the following requirements must be satisfied:
+To run wcl3, the following requirements must be satisfied:
 * Python 3.10+
 * [blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
 * [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/) (`pileup.sh`)
@@ -18,11 +18,11 @@ To run wcl, the following requirements must be satisfied:
 
 1. Install the package:
 
-    `pip install wcl`
+    `pip install wcl3`
 
     or, with [uv](https://docs.astral.sh/uv/):
 
-    `uv tool install wcl`
+    `uv tool install wcl3`
 
 1. Run the tool with `wcl`.
 
@@ -126,7 +126,7 @@ winston:
 ```
 
 ## Data preparation
-The first step is to prepare the data for wcl processing.
+The first step is to prepare the data for wcl3 processing.
 
 `wcl prepare_data`
 

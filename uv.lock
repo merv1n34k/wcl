@@ -1153,7 +1153,7 @@ wheels = [
 ]
 
 [[package]]
-name = "wcl"
+name = "wcl3"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
