@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wcl"
+version = "0.1.0"
+description = "wcl - transcriptomic data cross-contamination eliminator"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Serafim Nenarokov" },
+    { name = "Martin Kolisko" },
+]
+dependencies = [
+    "matplotlib>=2.0.0",
+    "numpy>=1.14.0",
+    "scipy>=0.19.0",
+    "biopython>=1.68",
+    "tqdm>=4.14.0",
+    "PyYAML>=3.11",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/kolecko007/WinstonCleaner"
+
+[project.scripts]
+wcl = "bin.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["winston*", "bin*"]
+
+[tool.setuptools.package-data]
+winston = ["config/settings.yml.default"]

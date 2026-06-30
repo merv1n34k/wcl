@@ -1,6 +1,6 @@
 import re
 
-from name_converter import NameConverter
+from .name_converter import NameConverter
 
 class SeqId:
     """

@@ -1,5 +1,5 @@
-from seq_id import SeqId
-from coverage_detector import CoverageDetector
+from .seq_id import SeqId
+from .coverage_detector import CoverageDetector
 
 class BlastHit():
     LEN_RATIO = 70

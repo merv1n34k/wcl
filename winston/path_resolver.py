@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from settings import Settings
+from .settings import Settings
 
 class PathResolver:
     base_path = Path(os.path.dirname(os.path.realpath(__file__))).parent

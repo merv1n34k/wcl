@@ -1,7 +1,7 @@
 import os, subprocess
 
-from settings import Settings
-from path_resolver import PathResolver
+from .settings import Settings
+from .path_resolver import PathResolver
 
 class Mapper:
     MAPPINGS_FOLDER = 'coverage'

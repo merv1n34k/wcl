@@ -1,8 +1,8 @@
 import os, glob, re, itertools, subprocess
 
-from path_resolver import PathResolver
-from data_manager import DataManager
-from settings import Settings
+from .path_resolver import PathResolver
+from .data_manager import DataManager
+from .settings import Settings
 
 class Blaster:
     COLUMNS = 'qseqid sseqid pident length qlen gaps slen qstart qend qcovs qcovhsp'
@@ -74,7 +74,7 @@ class Blaster:
                 files[left_org_id] = []
             files[left_org_id].append(f_path)
 
-        for org_id, files in files.iteritems():
+        for org_id, files in files.items():
             org_file_name = org_id + '.' + self.BLAST_RESULT_EXT
             path = PathResolver.output_path_for(PathResolver.ONE_VS_ALL_FOLDER, org_file_name)
 

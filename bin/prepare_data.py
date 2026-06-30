@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 import sys, os, logging, glob
 from pathlib import Path
 from multiprocessing import Pool, Lock
@@ -17,14 +17,18 @@ from winston.mapper import Mapper
 from winston.blaster import Blaster
 from winston.blastab.one_vs_one import OneVsOne
 
-parser = OptionParser(description="Main contamination finder script")
-parser.add_option("--config_path", help="Alternative config path")
-parser.add_option("--type_detection_only", default=False,
-                                           action="store_true",
-                                           help="Type detection only")
-(options, args) = parser.parse_args()
-
 SETTINGS_PATH = 'settings.yml'
+options = None
+
+
+def parse_args(argv=None, prog=None):
+    parser = OptionParser(prog=prog, description="Main contamination finder script")
+    parser.add_option("--config_path", help="Alternative config path")
+    parser.add_option("--type_detection_only", default=False,
+                                               action="store_true",
+                                               help="Type detection only")
+    parsed_options, args = parser.parse_args(argv)
+    return parsed_options
 
 def analyze_blastab(file_path):
     logger.info("Analyzing %s" % file_path)
@@ -44,7 +48,10 @@ def analyze_blastab(file_path):
     hist_path = PathResolver.output_path_for(PathResolver.HITSOGRAMS_FOLDER, hits_filename)
     blastab.plot(hist_path)
 
-def main():
+def main(argv=None, prog=None):
+    global options
+    options = parse_args(argv, prog)
+
     logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
     global logger
     logger = logging.getLogger()

@@ -9,7 +9,7 @@ from ..name_converter import NameConverter
 from ..blast_hit import BlastHit
 from ..blast_histogram import BlastHistogram
 from ..data_manager import Dataset
-from blastab import Blastab
+from .blastab import Blastab
 
 class OneVsOne(Blastab):
     PLOT_DPI = 200
@@ -107,7 +107,7 @@ class OneVsOne(Blastab):
 
         merged = []
 
-        for name, array in name_hash.iteritems():
+        for name, array in name_hash.items():
             if len(array) == 0:
                 raise Exception('Error: array should not be empty')
 

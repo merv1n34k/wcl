@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 import sys, os, time, logging, glob
 from pathlib import Path
 from multiprocessing import Pool
@@ -16,15 +16,22 @@ from winston.contaminations_finder import ContaminationsFinder
 from winston.coverage_detector import DatabaseWorker
 
 SETTINGS_PATH = 'settings.yml'
+options = None
 
-parser = OptionParser(description="Main contamination finder script")
-parser.add_option("--config_path", help="Alternative config path")
-(options, args) = parser.parse_args()
+
+def parse_args(argv=None, prog=None):
+    parser = OptionParser(prog=prog, description="Main contamination finder script")
+    parser.add_option("--config_path", help="Alternative config path")
+    parsed_options, args = parser.parse_args(argv)
+    return parsed_options
 
 def analyze_blastab(path):
     ContaminationsFinder(path).process()
 
-def main():
+def main(argv=None, prog=None):
+    global options
+    options = parse_args(argv, prog)
+
     logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
     global logger
     logger = logging.getLogger()

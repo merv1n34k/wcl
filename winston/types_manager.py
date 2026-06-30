@@ -1,6 +1,6 @@
 import csv
 
-from path_resolver import PathResolver
+from .path_resolver import PathResolver
 
 class TypesManager:
     types_dict = None

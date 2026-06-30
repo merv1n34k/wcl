@@ -1,5 +1,8 @@
 *.pyc
 *.yml
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml
 *.idea
 *.pbs
 *.DS_Store

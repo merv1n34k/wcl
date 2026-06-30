@@ -29,7 +29,7 @@ def get_contigs_count(path):
 def main():
     paths = glob.glob(ntpath.join(options.results_path, "*_deleted_stats.csv"))
     paths.sort()
-    acc_regexp = re.compile("MMETSP\d{4}")
+    acc_regexp = re.compile(r"MMETSP\d{4}")
 
     types = []
     if options.types:

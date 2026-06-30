@@ -1,19 +1,19 @@
 import os, glob, itertools, re, subprocess
 from pathlib import Path
 
-from settings import Settings
-from name_converter import NameConverter
-from path_resolver import PathResolver
+from .settings import Settings
+from .name_converter import NameConverter
+from .path_resolver import PathResolver
 from Bio import SeqIO
 
 class DataManager:
     READS_EXT = ['fq', 'fastq']
-    READS_FNAME_REGEXP = '^(.+?)_%s\.(' + '|'.join(READS_EXT) + ')$'
+    READS_FNAME_REGEXP = r'^(.+?)_%s\.(' + '|'.join(READS_EXT) + ')$'
     LEFT_READS_FNAME_REGEXP = re.compile(READS_FNAME_REGEXP % 1)
     RIGHT_READS_FNAME_REGEXP = re.compile(READS_FNAME_REGEXP % 2)
 
     CONTIGS_EXT = ['fa', 'fas', 'fasta']
-    CONTIGS_FNAME_REGEXP = re.compile('^(.+?)\.(' + '|'.join(CONTIGS_EXT) + ')$')
+    CONTIGS_FNAME_REGEXP = re.compile(r'^(.+?)\.(' + '|'.join(CONTIGS_EXT) + ')$')
 
     def __init__(self):
         self.datasets = []
@@ -30,7 +30,7 @@ class DataManager:
         for gid, els in itertools.groupby(files, self._extract_external_name):
             groups[gid] = list(els)
 
-        for group, files in groups.iteritems():
+        for group, files in groups.items():
             if not group or len(files) < 3:
                 continue
 
@@ -55,7 +55,7 @@ class DataManager:
 
 
     def _extract_external_name(self, file_name):
-        result = re.search('(.+?)(_[12])?\..+', file_name)
+        result = re.search(r'(.+?)(_[12])?\..+', file_name)
         if result:
             return result.group(1)
         else:
@@ -125,7 +125,7 @@ class Dataset:
         with open(out_file_path) as out_f, open(tmp_file_path, 'w') as tmp_f:
             for record in SeqIO.parse(out_f, 'fasta'):
                 new_id = record.id
-                new_id = re.split('\s+', new_id)[0]
+                new_id = re.split(r'\s+', new_id)[0]
                 new_id = "%s_%s" % (system_id, new_id)
                 record.id = new_id
                 record.description = ''
@@ -146,5 +146,3 @@ class Dataset:
             return paths[0]
         else:
             return None
-
-

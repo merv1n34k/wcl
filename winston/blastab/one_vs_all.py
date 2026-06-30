@@ -1,7 +1,7 @@
 from ..blast_hit import BlastHit
 from ..types_manager import TypesManager
 from ..settings import Settings
-from blastab import Blastab
+from .blastab import Blastab
 
 class OneVsAll(Blastab):
     def __init__(self, file_path):
@@ -16,7 +16,7 @@ class OneVsAll(Blastab):
         len_ratio = Settings.winston.hits_filtering.len_ratio
         len_minimum = Settings.winston.hits_filtering.len_minimum
 
-        for pair, blast_hit in pair_dict.iteritems():
+        for pair, blast_hit in pair_dict.items():
             left_seq_id = blast_hit.query_seq_id
             right_seq_id = blast_hit.subject_seq_id
 

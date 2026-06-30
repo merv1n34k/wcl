@@ -4,15 +4,15 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
-from winston.blastab.one_vs_all import OneVsAll
-from winston.blast_hit import BlastHit
-from types_manager import TypesManager
-from path_resolver import PathResolver
-from seq_id import SeqId
-from coverage_detector import CoverageDetector
-from name_converter import NameConverter
-from settings import Settings
-from data_manager import Dataset
+from .blastab.one_vs_all import OneVsAll
+from .blast_hit import BlastHit
+from .types_manager import TypesManager
+from .path_resolver import PathResolver
+from .seq_id import SeqId
+from .coverage_detector import CoverageDetector
+from .name_converter import NameConverter
+from .settings import Settings
+from .data_manager import Dataset
 
 class ContaminationsFinder:
     """
@@ -46,7 +46,7 @@ class ContaminationsFinder:
     def process(self):
         self._open_logs()
 
-        for seq_id, hits in self.blastab.hits_dict.iteritems():
+        for seq_id, hits in self.blastab.hits_dict.items():
             self._analyze_sequence(SeqId(seq_id), hits)
 
         self._log_contaminations()
@@ -97,7 +97,7 @@ class ContaminationsFinder:
             self.contaminations.append(self._get_best_hit(self.suspicious_hits[own_seq_id]))
 
     def _open_logs(self):
-        for name, ext in self.FILES.iteritems():
+        for name, ext in self.FILES.items():
             f_name = '%s_%s.%s' % (self.external_name, name, ext)
             self.logs[name] = open(PathResolver.results_path_for(f_name), 'w')
 

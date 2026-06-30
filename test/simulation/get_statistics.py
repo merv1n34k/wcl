@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 
 import glob, os, re
 from pathlib import Path
@@ -49,27 +49,27 @@ to_delete = read_from_list(options.dirty_path)
 should_be_deleted_cnt = len(to_delete)
 should_be_kept_cnt = seq_count-len(to_delete)
 
-print options.org_id
-print
-print "Seq count ", seq_count
-print
-print "Should be deleted: ", should_be_deleted_cnt
-print "Should be kept: ", should_be_kept_cnt
-print
-print "Actually deleted: ", len(deleted)
-print "Actually kept: ", len(clean)
-print
+print(options.org_id)
+print()
+print("Seq count ", seq_count)
+print()
+print("Should be deleted: ", should_be_deleted_cnt)
+print("Should be kept: ", should_be_kept_cnt)
+print()
+print("Actually deleted: ", len(deleted))
+print("Actually kept: ", len(clean))
+print()
 
 correct = list(set(deleted).intersection(set(to_delete)))
-print "Correct deletions: ", len(correct)
+print("Correct deletions: ", len(correct))
 
 mistakenly_kept = list(set(to_delete) - set(deleted))
 mistakenly_kept_pct = round((len(mistakenly_kept)/float(should_be_deleted_cnt))*100, 2)
-print "Mistakenly kept: %s (%s%%)" % (len(mistakenly_kept), mistakenly_kept_pct)
+print("Mistakenly kept: %s (%s%%)" % (len(mistakenly_kept), mistakenly_kept_pct))
 
 mistakenly_deleted = list(set(deleted) - set(to_delete))
 mistakenly_deleted_pct = round((len(mistakenly_deleted)/float(should_be_kept_cnt))*100, 2)
-print "Mistakenly deleted: %s (%s%%)" % (len(mistakenly_deleted), mistakenly_deleted_pct)
+print("Mistakenly deleted: %s (%s%%)" % (len(mistakenly_deleted), mistakenly_deleted_pct))
 
 ## Saving statistics to file
 
@@ -126,19 +126,19 @@ with open(mis_kept_path, 'w') as f:
 
 
 if options.for_stats:
-  print
-  print options.org_id
-  print
-  print seq_count
-  print
-  print should_be_deleted_cnt
-  print should_be_kept_cnt
-  print
-  print len(deleted)
-  print len(clean)
-  print
-  print len(correct)
-  print len(mistakenly_kept)
-  print len(mistakenly_deleted)
-  print mistakenly_kept_pct
-  print mistakenly_deleted_pct
+  print()
+  print(options.org_id)
+  print()
+  print(seq_count)
+  print()
+  print(should_be_deleted_cnt)
+  print(should_be_kept_cnt)
+  print()
+  print(len(deleted))
+  print(len(clean))
+  print()
+  print(len(correct))
+  print(len(mistakenly_kept))
+  print(len(mistakenly_deleted))
+  print(mistakenly_kept_pct)
+  print(mistakenly_deleted_pct)

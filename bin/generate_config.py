@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 import os
 import sys
 import shutil
@@ -13,15 +13,15 @@ from winston.path_resolver import PathResolver
 SETTINGS_PATH = 'winston/config/settings.yml.default'
 
 
-def parse_args():
-    parser = OptionParser(description="Generate default config")
+def parse_args(argv=None, prog=None):
+    parser = OptionParser(prog=prog, description="Generate default config")
     parser.add_option("--output_folder", help="Where to put new settings.yml (current folder by default)")
-    (options, args) = parser.parse_args()
+    (options, args) = parser.parse_args(argv)
     return options
 
 
-def main():
-    options = parse_args()
+def main(argv=None, prog=None):
+    options = parse_args(argv, prog)
     dummy_path = PathResolver.abs_path_for(SETTINGS_PATH)
     output_path = "settings.yml"
 

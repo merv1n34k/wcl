@@ -1,9 +1,8 @@
 import sys, os
 import pickle, sqlite3
 from tqdm import tqdm
-from StringIO import StringIO
 
-from path_resolver import PathResolver
+from .path_resolver import PathResolver
 
 class DatabaseWorker:
     DEFAULT_DB_FILE_NAME = 'database.db'
@@ -65,7 +64,7 @@ class CoverageDetector:
             """ % (self.TABLE_NAME, contig_id, kmer))
 
     def load_from_pickle(self, file_path):
-        items = pickle.load(open(file_path, 'r'))
+        items = pickle.load(open(file_path, 'rb'))
         self.load_from_hash(items)
 
     def load_from_csv(self, file_path):
@@ -91,7 +90,7 @@ class CoverageDetector:
         commit_items_count = 5000
         cnt = 0
 
-        for name, value in tqdm(items.iteritems(), total=len(items)):
+        for name, value in tqdm(items.items(), total=len(items)):
             self.insert(name, value[0])
 
             if cnt >= commit_items_count:

@@ -1,7 +1,7 @@
 import os, random
 
-from settings import Settings
-from path_resolver import PathResolver
+from .settings import Settings
+from .path_resolver import PathResolver
 
 class NameConverter:
     DICT_FILENAME = 'system_names.csv'
